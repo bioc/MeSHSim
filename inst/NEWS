@@ -1,4 +1,6 @@
 MeSHSim package
+2015-01-11: Enrich function termInfo to just retrive brief information
+
 2015-01-08: Update to 2015 MeSH information for 0.99.2 release
 
 2014-12-14: Update vignettes for MeSHSim 0.99.1 release
