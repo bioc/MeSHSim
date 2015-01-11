@@ -17,20 +17,32 @@ eutils_parse<-function(a, verbose){
     if(verbose){
         print(paste("Title", xmlValue(a[["PubmedArticle"]][["MedlineCitation"]][["Article"]][["ArticleTitle"]]), sep=": "));
         print(paste("Abstract", xmlValue(a[["PubmedArticle"]][["MedlineCitation"]][["Article"]][["Abstract"]][["AbstractText"]]), sep=": "));
-        print("Headings:");
+        print("MeSH Headings:");
     }
     headings<-c()
     major_headings<-c()
     get_headings<-function(b){
+		if (xmlValue(b[["DescriptorName"]]) == "Female" || xmlValue(b[["DescriptorName"]]) == "Male") {
+			return(NULL)
+		}
         xmlValue(b[["DescriptorName"]])
     }
     get_major_headings_bool<-function(b){
-        if(xmlAttrs(b[["DescriptorName"]])[["MajorTopicYN"]] == "Y")
-            return(TRUE)
-        return(FALSE)
+		i<-1;
+		is_major = FALSE;
+		while(i <= length(b)) {
+			if(xmlAttrs(b[[i]])[["MajorTopicYN"]] == "Y") {
+				is_major = TRUE;
+				break;
+			}
+			i<-i+1;
+		}
+        return(is_major)
     }
     headings<-as.vector(lapply(xml_mesh_list, get_headings), mode="character")
+	headings<-headings[!headings=="NULL"]
     major_headings<-headings[as.vector(lapply(xml_mesh_list, get_major_headings_bool), mode="logical")]
+	major_headings<-major_headings[!major_headings=="NULL"]
     return(list(all=headings, major=major_headings))
 }
 get_headings_by_PMID<-function(a, verbose=FALSE, ismajor=FALSE){

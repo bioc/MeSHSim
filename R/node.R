@@ -15,7 +15,8 @@
         return(sapply(b, run2))
     }
     res<-as.vector(sapply(a, run))
-    dim(res)<-c(length(a), length(b))
+    dim(res)<-c(length(b), length(a))
+	res<-t(res)
     return(res)
 }
 nodeSim<-function(node1, node2, method="SP", frame="node", env=NULL){
@@ -30,7 +31,8 @@ mnodeSim<-function(nodeList1, nodeList2, method="SP", frame="node", env=NULL){
         return(sapply(nodeList2, run2))
     }
     res<-as.vector(sapply(nodeList1, run))
-    dim(res)<-c(length(nodeList1), length(nodeList2))
+    dim(res)<-c(length(nodeList2), length(nodeList1))
+	res<-t(res)
     return(res)
 }
 headingSim<-function(heading1, heading2, method="SP", frame="node", env=NULL){
@@ -51,7 +53,8 @@ mheadingSim<-function(headingList1, headingList2, method="SP", frame="node", env
         return(sapply(headingList2, run2))
     }
     res<-as.vector(sapply(headingList1, run))
-    dim(res)<-c(length(headingList1), length(headingList2))
+    dim(res)<-c(length(headingList2), length(headingList1))
+	res<-t(res)
     return(res)
 }
 nodeInfo<-function(node, env=NULL){
