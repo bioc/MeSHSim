@@ -427,13 +427,20 @@ nodeInfo(node1, env=NULL)\\
 \emph{Function}: to retrieve hierarchy information of a given MeSH node\\
 \emph{Parameters}:\\
 \hspace*{20pt}    node: a MeSH node name\\
+\hspace*{20pt}	brief: whether to retrive breif tree information of MeSH node\\
 \hspace*{20pt}   env: the dataset to use. As the dataset has been pre-calculated in MeSHSim package, there is no need to set ``env" defaultly.\\
 \emph{Value}:\\
 \hspace*{20pt}    return hierarchy information of a given MeSH node\\
 
 \textbf{Examples of nodeInfo}
+
+Users are able to choose to fetch brief information of a given MeSH node by setting \Rfunarg{brief}. The default setting is retrieve all MeSH headings, whose value ``TRUE''
 <<main21>>=
 nodeInfo("B03.440.400.425.127.100")
+@
+
+<<main22>>=
+nodeInfo("B03.440.400",brief=FALSE)
 @
 
 
@@ -450,12 +457,12 @@ termInfo(heading1, env=NULL)\\
 
 \textbf{Examples of \Rfunction{termInfo}}
 
-Users are able to choose to fetch brief information of a given MeSH term by setting \Rfunarg{brief}. The default setting is retrieve all MeSH headings, whose value ``FALSE''
-<<main22>>=
-termInfo("Rhode Island", brief=TRUE)
-@
+Users are able to choose to fetch brief information of a given MeSH term by setting \Rfunarg{brief}. The default setting is retrieve all MeSH headings, whose value ``TRUE''
 <<main23>>=
 termInfo("Rhode Island")
+@
+<<main24>>=
+termInfo("Rhode Island",brief=FALSE)
 @
 
 \bibliographystyle{apalike}
