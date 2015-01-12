@@ -22,9 +22,6 @@ eutils_parse<-function(a, verbose){
     headings<-c()
     major_headings<-c()
     get_headings<-function(b){
-		if (xmlValue(b[["DescriptorName"]]) == "Female" || xmlValue(b[["DescriptorName"]]) == "Male") {
-			return(NULL)
-		}
         xmlValue(b[["DescriptorName"]])
     }
     get_major_headings_bool<-function(b){
@@ -40,9 +37,11 @@ eutils_parse<-function(a, verbose){
         return(is_major)
     }
     headings<-as.vector(lapply(xml_mesh_list, get_headings), mode="character")
-	headings<-headings[!headings=="NULL"]
     major_headings<-headings[as.vector(lapply(xml_mesh_list, get_major_headings_bool), mode="logical")]
-	major_headings<-major_headings[!major_headings=="NULL"]
+	headings<-headings[!headings=="Female"]
+	headings<-headings[!headings=="Male"]
+	major_headings<-major_headings[!major_headings=="Female"]
+	major_headings<-major_headings[!major_headings=="Male"]
     return(list(all=headings, major=major_headings))
 }
 get_headings_by_PMID<-function(a, verbose=FALSE, ismajor=FALSE){

@@ -1,4 +1,4 @@
-lambda<-2
+lambda<-3
 lca<-function(a, b){
     i<-1
     while((i <= min(length(a), length(b))) && (a[i] == b[i])){

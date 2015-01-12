@@ -1,4 +1,6 @@
 MeSHSim package
+2015-01-12: adjust parameter and update MeSH information
+
 2015-01-12: fix bugs
 
 2015-01-11: Enrich function termInfo to just retrive brief information
