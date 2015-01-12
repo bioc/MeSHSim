@@ -57,11 +57,22 @@ mheadingSim<-function(headingList1, headingList2, method="SP", frame="node", env
 	res<-t(res)
     return(res)
 }
-nodeInfo<-function(node, env=NULL){
+nodeInfo<-function(node, brief=TRUE, env=NULL){
     env=check_and_set_data(env);
-    `_build_node_tree`(node, env);
+    if (brief) {
+        a<-get_tree_path(node);
+        l <- list();
+        for(i in 2:length(a)){
+            tmp<-get(get_node_var_name_v(a[1:i]), envir=env);
+            l[[paste(a[2:i], collapse=".")]] <- tmp$descriptor;
+        }
+        l;
+    }
+    else {
+        `_build_node_tree`(node, env);
+    }
 }
-termInfo<-function(term, brief=FALSE, env=NULL){
+termInfo<-function(term, brief=TRUE, env=NULL){
     env=check_and_set_data(env);
     if (brief) {
         a<-get_term_var_name(term);
