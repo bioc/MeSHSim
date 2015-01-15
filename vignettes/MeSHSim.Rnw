@@ -104,7 +104,7 @@ The notion of information content of the heading practically has to do with the 
 \subsection{\Rfunarg{Lord}: \emph{Lord et al.}\citep{Lord2003}}
 The first way to compare two headings is by using a measure that simply uses the probability of nearest common ancestor.
 \begin{equation}
-	Sim_{lord}=1-p(c)
+	Sim_{Lord}=1-p(c)
 \end{equation}
 where $c$ is the nearest common ancestor of heading $c_1$ and $c_2$. The measure implies that similarity judgements might be sensitive to frequency of a heading rather than its information content.
 
@@ -118,7 +118,7 @@ where $c$ is the nearest common ancestor of heading $c_1$ and $c_2$. As $p(c)$ v
 \subsection{\Rfunarg{Lin}: \emph{Lin}\citep{Lin1993}}
 This measure is the same as WP, except that the information content is used, instead of node depth.
 \begin{equation}
-	Sim_{Resnik}=\frac{2*I(c)}{I(c_1)+I(c_2)}
+	Sim_{Lin}=\frac{2*I(c)}{I(c_1)+I(c_2)}
 \end{equation}
 where $c$ is the nearest common ancestor of heading $c_1$ and $c_2$. As the Resnik measure relies only on information content of the nearest common ancestor, there are only as many discrete socre as there are ontology terms. Lin's measure utilize information content of both compared terms and their nearest common ancestor, which means the amount of discrete scores is quadratic in the number of terms in the ontology. Thus, this measure can obtain a bettern ranking of similarity that Resnik' measure.
 
@@ -304,8 +304,8 @@ The type of framework is set by specifying the \Rfunarg{frame} argument to of \t
 <<main10>>=
 headingList1<-c("Body Regions", "Abdomen", "Abdominal Cavity")
 headingList2<-c("Lumbosacral Region", "Body Regions")
-headingSim(headingList1, headingList2, method="JC", frame="node")
-headingSim(headingList1, headingList2, method="JC", frame="heading")
+mheadingSim(headingList1, headingList2, method="JC", frame="node")
+mheadingSim(headingList1, headingList2, method="JC", frame="heading")
 @
 
 \subsubsection{\Rfunction{headingSetSim}}
@@ -333,16 +333,16 @@ The type of similarity measurement is set by specifying the \Rfunarg{method} arg
 <<main12>>=
 headingSet1<-c("Body Regions", "Abdomen", "Abdominal Cavity")
 headingSet2<-c("Lumbosacral Region", "Body Regions")
-mheadingSim(headingSet1, headingSet2, method="Lord")
-mheadingSim(headingSet1, headingSet2, method="Resnik")
+headingSetSim(headingSet1, headingSet2, method="Lord")
+headingSetSim(headingSet1, headingSet2, method="Resnik")
 @
 
 The type of framework is set by specifying the \Rfunarg{frame} argument to of \texttt{"node"} and \texttt{"heading"}, which stand for ``node-based'' and ``heading-based'' similarity framework, repectively, described in prevous sections. The default setting is ``node'' using node-based framework.
 <<main13>>=
 headingSet1<-c("Body Regions", "Abdomen", "Abdominal Cavity")
 headingSet2<-c("Lumbosacral Region", "Body Regions")
-headingSim(headingSet1, headingSet2, method="JC", frame="node")
-headingSim(headingSet1, headingSet2, method="JC", frame="heading")
+headingSetSim(headingSet1, headingSet2, method="JC", frame="node")
+headingSetSim(headingSet1, headingSet2, method="JC", frame="heading")
 @
 
 

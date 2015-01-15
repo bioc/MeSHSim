@@ -38,7 +38,7 @@ mesh_node_similarity_Li<-function(a, b, f, env){
 }
 mesh_node_similarity_Lord<-function(a, b, f, env){
     lca_path<-a[1:lca(a,b)]
-    ic<-get_node_information_content(a, f, env)
+    ic<-get_node_information_content(lca_path, f, env)
     1-exp(-ic)
 }
 mesh_node_similarity_Resnik<-function(a, b, f, env){
