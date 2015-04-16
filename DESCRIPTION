@@ -3,7 +3,7 @@ Type: Package
 Author: Jing Zhou, Yuxuan Shui
 Maintainer: Jing ZHou <12210240050@fudan.edu.cn>
 Title: MeSH(Medical Subject Headings) Semantic Similarity Measures
-Version: 1.0.0
+Version: 1.1.0
 Date: 2015-01-12
 Imports: XML, RCurl
 Depends: R(>= 3.0.0)
